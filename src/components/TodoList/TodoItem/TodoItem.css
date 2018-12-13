@@ -1,0 +1,20 @@
+.TodoListItems{
+    list-style: none;
+}
+.TodoListItems li{
+    display: flex;
+    min-height: 40px;
+    padding: 15px;
+    width: 100%;
+    justify-content: space-between
+}
+.delete{
+    cursor: pointer;
+}
+.delete:hover{
+    color: red;
+}
+.remove{
+    text-decoration: line-through;
+    opacity: .5;
+}

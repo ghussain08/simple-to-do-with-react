@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header/Header';
+import TodoList from './components/TodoList/TodoList';
+
 
 class App extends Component {
+
+  state = {
+    items: []
+  }
+
+  itemAddHandler = (e) => {
+    e.preventDefault();
+    let els = e.target.elements;
+    let newStateItems = [...this.state.items, els[0].value];
+    this.setState({ items: newStateItems });
+    els[0].value = '';
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
+        {/* Header */}
+        <Header />
+
+        {/* todo input element */}
+        <div className='TodoInput' >
+          <form onSubmit={this.itemAddHandler}>
+            <input name='item' type='text' required />
+          </form>
+        </div>
+
+        {/* todo list items */}
+        <TodoList items={this.state.items} />
       </div>
     );
   }
